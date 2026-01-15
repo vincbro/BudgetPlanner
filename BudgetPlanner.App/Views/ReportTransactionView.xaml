@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="BudgetPlanner.App.Views.ReportTransactionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:models="clr-namespace:BudgetPlanner.App.Models"
+             xmlns:local="clr-namespace:BudgetPlanner.App.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border Style="{StaticResource card-border}">
+            <StackPanel Style="{StaticResource card}" Orientation="Horizontal">
+                <TextBlock>Amount:</TextBlock>
+                <TextBox MinWidth="150" Text="{Binding Amount}"/>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource card-border}">
+            <StackPanel Style="{StaticResource card}" Orientation="Horizontal">
+                <TextBlock>Category:</TextBlock>
+                <TextBox MinWidth="150" Text="{Binding Category}"/>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource card-border}">
+            <StackPanel Style="{StaticResource card}" Orientation="Horizontal">
+                <TextBlock>Transaction Date:</TextBlock>
+                <TextBox MinWidth="150" Text="{Binding TransactionDate}"/>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource card-border}">
+            <StackPanel Style="{StaticResource card}" Orientation="Horizontal">
+                <TextBlock>Recurring:</TextBlock>
+                <CheckBox Margin="8 0 8 0" IsChecked="{Binding Reccuring}"/>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource card-border}">
+            <StackPanel Style="{StaticResource card}" Orientation="Horizontal">
+                <TextBlock>Type:</TextBlock>
+                <RadioButton Content="Income" Margin="8 0 8 0" Command="{Binding TypeChanged}" IsChecked="True" CommandParameter="{x:Static models:TransactionType.Income}"/>
+                <RadioButton Content="Expense" Margin="8 0 8 0" Command="{Binding TypeChanged}" CommandParameter="{x:Static models:TransactionType.Expense}"/>
+                <RadioButton Content="Savings" Margin="8 0 8 0" Command="{Binding TypeChanged}" CommandParameter="{x:Static models:TransactionType.Saving}"/>
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource card-border}">
+            <Button Click="CreateReportClicked">
+                Create report
+            </Button>
+        </Border>
+<Border Style="{StaticResource card-border}">
+    <Button Click="BackClicked">
+       Back 
+    </Button>
+</Border>
+    </StackPanel>
+
+</UserControl>

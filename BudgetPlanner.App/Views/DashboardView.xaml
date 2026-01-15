@@ -3,17 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BudgetPlanner.App.Views"
-        mc:Ignorable="d"
+        xmlns:local="clr-namespace:BudgetPlanner.App.Views" xmlns:models="clr-namespace:BudgetPlanner.App.Models"
+             mc:Ignorable="d"
         d:Height="720" d:Width="1280">
     <DockPanel LastChildFill="True" Margin="8">
-        <Border Style="{StaticResource card-border}">
-            <StackPanel Style="{StaticResource card}">
-                <TextBlock Margin="0 8 0 8">NAVBAR</TextBlock>
-                <Button Margin="0 8 0 8" >+</Button>
-                <Button Margin="0 8 0 8">-</Button>
-            </StackPanel>
-        </Border>
+        <StackPanel Margin="8" Orientation="Horizontal" DockPanel.Dock="Top">
+            <Border Style="{StaticResource card-border}">
+                <Button Click="ReportTransactionClicked">
+                    Add Transaction
+                </Button>
+            </Border>
+            <Border Style="{StaticResource card-border}">
+                <Button Command="{Binding RefreshCommand}">
+                    Refresh
+                </Button>
+            </Border>
+        </StackPanel>
         <Grid Margin="8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -28,39 +33,64 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource card-border}">
                 <StackPanel  Style="{StaticResource card}">
-                    <TextBlock Style="{StaticResource h2}">Total Balance</TextBlock>
-                    <TextBlock Style="{StaticResource h2}">10000 kr</TextBlock>
+                    <TextBlock Style="{StaticResource h2}">Balance:</TextBlock>
+                    <TextBlock Style="{StaticResource h2}" Text="{Binding User.Account.Balance, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
                 </StackPanel>
             </Border>
             <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource card-border}">
                 <StackPanel  Style="{StaticResource card}">
-                    <TextBlock Style="{StaticResource h2}">Total Balance</TextBlock>
-                    <TextBlock Style="{StaticResource h2}">10000 kr</TextBlock>
+                    <TextBlock Style="{StaticResource h2}">Savings:</TextBlock>
+                    <TextBlock Style="{StaticResource h2}" Text="{Binding User.Account.Savings, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
                 </StackPanel>
             </Border>
             <Border Grid.Row="0" Grid.Column="2" Style="{StaticResource card-border}">
                 <StackPanel  Style="{StaticResource card}">
-                    <TextBlock Style="{StaticResource h2}">Total Balance</TextBlock>
-                    <TextBlock Style="{StaticResource h2}">10000 kr</TextBlock>
+                    <TextBlock Style="{StaticResource h2}">Income:</TextBlock>
+                    <TextBlock Style="{StaticResource h2}" Text="{Binding User.Account.TotalIncome, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
                 </StackPanel>
             </Border>
             <Border Grid.Row="0" Grid.Column="3" Style="{StaticResource card-border}">
                 <StackPanel  Style="{StaticResource card}">
 
-                    <TextBlock Style="{StaticResource h2}">Total Balance</TextBlock>
-                    <TextBlock Style="{StaticResource h2}">10000 kr</TextBlock>
+                    <TextBlock Style="{StaticResource h2}">Expenses:</TextBlock>
+                    <TextBlock Style="{StaticResource h2}" Text="{Binding User.Account.TotalExpenses, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
                 </StackPanel>
             </Border>
             <Border Grid.Row="2" Grid.Column="0" Style="{StaticResource card-border}">
                 <StackPanel  Style="{StaticResource card}">
-                    <TextBlock Style="{StaticResource h2}">Total Balance</TextBlock>
-                    <TextBlock Style="{StaticResource h2}">10000 kr</TextBlock>
+                    <TextBlock Style="{StaticResource h2}">Transactions:</TextBlock>
+                    <ListView ItemsSource="{Binding Transactions}" SelectedItem="{Binding Path=SelectedTransaction}" Style="{StaticResource list}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Display}" Margin="4" Style="{StaticResource h2}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
                 </StackPanel>
             </Border>
             <Border  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource card-border}">
-                <StackPanel Style="{StaticResource card}">
-                    <TextBlock Style="{StaticResource h2}">Total Balance</TextBlock>
-                    <TextBlock Style="{StaticResource h2}">10000 kr</TextBlock>
+                <StackPanel  Style="{StaticResource card}">
+                    <TextBlock Style="{StaticResource h2}">Edit</TextBlock>
+                    <TextBox Text="{Binding SelectedTransaction.Category}"/>
+                    <TextBox Text="{Binding SelectedTransaction.Amount}"/>
+                    <TextBox Text="{Binding SelectedTransaction.TransactionDate}"/>
+                    <StackPanel Style="{StaticResource card}" Orientation="Horizontal">
+                        <RadioButton 
+                            Content="Income" 
+                            Margin="8 0 8 0" 
+                            IsChecked="{Binding IsIncomeSelected}" />
+                        <RadioButton 
+                            Content="Expense" 
+                            Margin="8 0 8 0" 
+                            IsChecked="{Binding IsExpenseSelected}" />
+                        <RadioButton 
+                            Content="Savings" 
+                            Margin="8 0 8 0" 
+                            IsChecked="{Binding IsSavingsSelected}"/>
+                    </StackPanel>
                 </StackPanel>
             </Border>
 

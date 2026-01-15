@@ -1,6 +1,5 @@
 ﻿using BudgetPlanner.App.Models;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace BudgetPlanner.App.VM
 {
