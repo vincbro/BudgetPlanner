@@ -5,15 +5,12 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace BudgetPlanner.App.Views
-{
-	public partial class ReportTransactionView : UserControl
-	{
+namespace BudgetPlanner.App.Views {
+	public partial class ReportTransactionView : UserControl {
 		private readonly Action createReport;
 		private ReportTransactionViewModel vm = new();
 		private readonly string userId;
-		public ReportTransactionView(string id, Action createReport)
-		{
+		public ReportTransactionView(string id, Action createReport) {
 			InitializeComponent();
 			this.createReport = createReport;
 			vm.Type = TransactionType.Income;
@@ -21,18 +18,16 @@ namespace BudgetPlanner.App.Views
 			userId = id;
 		}
 
-		private void CreateReportClicked(object sender, RoutedEventArgs e)
-		{
-			Trace.WriteLine($"Report transaction of {vm.Amount} kr as {vm.Type}. Reccuring [{vm.Reccuring}], Time [{vm.TransactionDate}]");
+		private void CreateReportClicked(object sender, RoutedEventArgs e) {
+			Trace.WriteLine($"Report transaction of {vm.Amount} kr as {vm.Type}. Reccuring [{vm.RecurrenceType}], Time [{vm.TransactionDate}]");
 			var data = new DataService();
 			var user = data.GetUser(userId);
-			var transaction = new Transaction()
-			{
+			var transaction = new Transaction() {
 				Id = System.Guid.NewGuid().ToString(),
 				Amount = vm.Amount,
 				Category = vm.Category,
 				TransactionDate = vm.TransactionDate,
-				IsRecurring = vm.Reccuring,
+				Recurrence = vm.RecurrenceType,
 				Type = vm.Type,
 				AccountId = user.Account.Id,
 			};
@@ -40,8 +35,7 @@ namespace BudgetPlanner.App.Views
 			createReport.Invoke();
 		}
 
-		private void BackClicked(object sender, RoutedEventArgs e)
-		{
+		private void BackClicked(object sender, RoutedEventArgs e) {
 			createReport.Invoke();
 		}
 	}

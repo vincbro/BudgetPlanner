@@ -54,5 +54,29 @@ namespace BudgetPlanner.App.Data
 			db.Entry(transaction).State = EntityState.Modified;
 			db.SaveChanges();
 		}
+
+		public Transaction GetTransaction(string id)
+		{
+			using var db = new AppContext();
+			return db.Transactions.First(t => t.Id == id);
+		}
+
+		internal void DeleteTransaction(string id)
+		{
+			using var db = new AppContext();
+			var transaction = db.Transactions.First(t => t.Id == id);
+			db.Remove(transaction);
+			db.SaveChanges();
+		}
+
+		internal void DeleteAllLinkedTransaction(string id)
+		{
+			using var db = new AppContext();
+			var transaction = db.Transactions.First(t => t.Id == id);
+			var baseTransactionId = transaction.BaseTransactionId ?? transaction.Id;
+			var transactions = db.Transactions.Where(t => t.BaseTransactionId == baseTransactionId || t.Id == baseTransactionId).ToList();
+			db.RemoveRange(transactions);
+			db.SaveChanges();
+		}
 	}
 }

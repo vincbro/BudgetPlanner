@@ -15,7 +15,7 @@ namespace BudgetPlanner.App.Views
 		{
 			InitializeComponent();
 			var user = data.GetUser(id);
-			user.Account.Update();
+			user.Account.ProcessTransactions();
 			vm.User = data.GetUser(id);
 			Trace.WriteLine($"Dashboard for user {vm.User.FirstName} {vm.User.LastName} with {vm.User.Account.Balance} kr and {vm.User.Account.Transactions.Count} transactions");
 			DataContext = vm;

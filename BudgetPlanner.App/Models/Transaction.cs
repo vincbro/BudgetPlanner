@@ -12,6 +12,16 @@ namespace BudgetPlanner.App.Models
 		Saving
 	};
 
+	public enum RecurrenceType
+	{
+		OneTime,
+		Daily,
+		Weekly,
+		Monthly,
+		Yearly,
+	};
+
+
 	public class Transaction : INotifyPropertyChanged
 	{
 		[Key]
@@ -21,10 +31,11 @@ namespace BudgetPlanner.App.Models
 		public TransactionType Type { get; set; }
 		public string Category { get; set; } = string.Empty;
 		public bool IsProcessed { get; set; } = false;
-		public bool IsRecurring { get; set; } = false;
+		public RecurrenceType Recurrence { get; set; }
+		public string? BaseTransactionId { get; set; } = null;
 		public string AccountId { get; set; } = string.Empty;
 
-		public string Display => $"{TransactionDate.ToShortDateString()} - {Type} - {Category}: {string.Format("{0:N0}", Amount)} kr";
+		public string Display => $"{TransactionDate.ToShortDateString()} - {Type} - {Category}: {string.Format("{0:N0}", Amount)} kr - Processed: [{IsProcessed}]";
 
 		public event PropertyChangedEventHandler? PropertyChanged;
 		protected void OnPropertyChanged([CallerMemberName] string? name = null) =>

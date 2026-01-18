@@ -1,91 +1,77 @@
 ﻿using BudgetPlanner.App.Command;
 using BudgetPlanner.App.Models;
 
-namespace BudgetPlanner.App.VM
-{
-	public class ReportTransactionViewModel : ViewModelBase
-	{
+namespace BudgetPlanner.App.VM {
+	public class ReportTransactionViewModel : ViewModelBase {
 		private decimal amount;
-		public decimal Amount
-		{
-			get
-			{
+		public decimal Amount {
+			get {
 				return amount;
 
 			}
-			set
-			{
+			set {
 				amount = value;
 				RaisePropertyChanged();
 			}
 		}
 
 		private string category = string.Empty;
-		public string Category
-		{
-			get
-			{
+		public string Category {
+			get {
 				return category;
 
 			}
-			set
-			{
+			set {
 				category = value;
 				RaisePropertyChanged();
 			}
 		}
 
 		private DateTime transactionDate = DateTime.Now;
-		public DateTime TransactionDate
-		{
-			get
-			{
+		public DateTime TransactionDate {
+			get {
 				return transactionDate;
 			}
-			set
-			{
+			set {
 				transactionDate = value;
 				RaisePropertyChanged();
 			}
 		}
 
-		private bool reccuring;
-		public bool Reccuring
-		{
-			get
-			{
-				return reccuring;
-
+		private RecurrenceType recurrenceType = RecurrenceType.OneTime;
+		public RecurrenceType RecurrenceType {
+			get {
+				return recurrenceType;
 			}
-			set
-			{
-				reccuring = value;
+			set {
+				recurrenceType = value;
 				RaisePropertyChanged();
 			}
 		}
+		public DelegateCommand RecurringChanged { get; }
 
 		private TransactionType type = TransactionType.Income;
-		public TransactionType Type
-		{
-			get
-			{
+		public TransactionType Type {
+			get {
 				return type;
 			}
-			set
-			{
+			set {
 				type = value;
 				RaisePropertyChanged();
 			}
 		}
 		public DelegateCommand TypeChanged { get; }
 
-		public ReportTransactionViewModel()
-		{
-			TypeChanged = new DelegateCommand((object? obj) =>
-			{
-				if(obj is TransactionType newType)
-				{
+		public ReportTransactionViewModel() {
+			TypeChanged = new DelegateCommand((object? obj) => {
+				if(obj is TransactionType newType) {
 					Type = newType;
+				}
+			});
+
+			RecurringChanged = new DelegateCommand((object? obj) => {
+				if(obj is RecurrenceType newRecurring) {
+					RecurrenceType = newRecurring;
 				}
 			});
 		}

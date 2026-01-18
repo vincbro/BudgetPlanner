@@ -1,11 +1,11 @@
 ﻿<UserControl x:Class="BudgetPlanner.App.Views.ReportTransactionView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:models="clr-namespace:BudgetPlanner.App.Models"
              xmlns:local="clr-namespace:BudgetPlanner.App.Views"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <Border Style="{StaticResource card-border}">
@@ -32,7 +32,11 @@
         <Border Style="{StaticResource card-border}">
             <StackPanel Style="{StaticResource card}" Orientation="Horizontal">
                 <TextBlock>Recurring:</TextBlock>
-                <CheckBox Margin="8 0 8 0" IsChecked="{Binding Reccuring}"/>
+                <RadioButton Content="One Time" Margin="8 0 8 0" Command="{Binding RecurringChanged}" IsChecked="True" CommandParameter="{x:Static models:RecurrenceType.OneTime}"/>
+                <RadioButton Content="Daily" Margin="8 0 8 0" Command="{Binding RecurringChanged}" CommandParameter="{x:Static models:RecurrenceType.Daily}"/>
+                <RadioButton Content="Weekly" Margin="8 0 8 0" Command="{Binding RecurringChanged}" CommandParameter="{x:Static models:RecurrenceType.Weekly}"/>
+                <RadioButton Content="Monthly" Margin="8 0 8 0" Command="{Binding RecurringChanged}" CommandParameter="{x:Static models:RecurrenceType.Monthly}"/>
+                <RadioButton Content="Yearly" Margin="8 0 8 0" Command="{Binding ReccuringChanged}" CommandParameter="{x:Static models:RecurrenceType.Yearly}"/>
             </StackPanel>
         </Border>
 
@@ -51,7 +55,7 @@
         </Border>
 <Border Style="{StaticResource card-border}">
     <Button Click="BackClicked">
-       Back 
+       Back
     </Button>
 </Border>
     </StackPanel>
