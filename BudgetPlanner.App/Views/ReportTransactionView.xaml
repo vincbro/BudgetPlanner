@@ -7,57 +7,75 @@
              xmlns:local="clr-namespace:BudgetPlanner.App.Views"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Border Style="{StaticResource card-border}">
-            <StackPanel Style="{StaticResource card}" Orientation="Horizontal">
-                <TextBlock>Amount:</TextBlock>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="600">
+        <TextBlock TextAlignment="Center" Style="{StaticResource h1}" Margin="0,0,0,12">
+            Add Transaction
+        </TextBlock>
+        <TextBlock TextAlignment="Center" Style="{StaticResource h2}" Margin="0,0,0,32" Foreground="{StaticResource muted}">
+            Record your income or expense
+        </TextBlock>
+        
+        <Border Style="{StaticResource card-border}" MinWidth="500">
+            <StackPanel>
+                <TextBlock Margin="0,0,0,8" FontSize="14" Foreground="{StaticResource muted}">Amount (kr)</TextBlock>
                 <TextBox MinWidth="150" Text="{Binding Amount}"/>
             </StackPanel>
         </Border>
 
-        <Border Style="{StaticResource card-border}">
-            <StackPanel Style="{StaticResource card}" Orientation="Horizontal">
-                <TextBlock>Category:</TextBlock>
+        <Border Style="{StaticResource card-border}" MinWidth="500">
+            <StackPanel>
+                <TextBlock Margin="0,0,0,8" FontSize="14" Foreground="{StaticResource muted}">Category</TextBlock>
                 <TextBox MinWidth="150" Text="{Binding Category}"/>
             </StackPanel>
         </Border>
 
-        <Border Style="{StaticResource card-border}">
-            <StackPanel Style="{StaticResource card}" Orientation="Horizontal">
-                <TextBlock>Transaction Date:</TextBlock>
+        <Border Style="{StaticResource card-border}" MinWidth="500">
+            <StackPanel>
+                <TextBlock Margin="0,0,0,8" FontSize="14" Foreground="{StaticResource muted}">Transaction Date</TextBlock>
                 <TextBox MinWidth="150" Text="{Binding TransactionDate}"/>
             </StackPanel>
         </Border>
 
-        <Border Style="{StaticResource card-border}">
-            <StackPanel Style="{StaticResource card}" Orientation="Horizontal">
-                <TextBlock>Recurring:</TextBlock>
-                <RadioButton Content="One Time" Margin="8 0 8 0" Command="{Binding RecurringChanged}" IsChecked="True" CommandParameter="{x:Static models:RecurrenceType.OneTime}"/>
-                <RadioButton Content="Daily" Margin="8 0 8 0" Command="{Binding RecurringChanged}" CommandParameter="{x:Static models:RecurrenceType.Daily}"/>
-                <RadioButton Content="Weekly" Margin="8 0 8 0" Command="{Binding RecurringChanged}" CommandParameter="{x:Static models:RecurrenceType.Weekly}"/>
-                <RadioButton Content="Monthly" Margin="8 0 8 0" Command="{Binding RecurringChanged}" CommandParameter="{x:Static models:RecurrenceType.Monthly}"/>
-                <RadioButton Content="Yearly" Margin="8 0 8 0" Command="{Binding ReccuringChanged}" CommandParameter="{x:Static models:RecurrenceType.Yearly}"/>
+        <Border Style="{StaticResource card-border}" MinWidth="500">
+            <StackPanel>
+                <TextBlock Margin="0,0,0,12" FontSize="14" Foreground="{StaticResource muted}">Recurrence Pattern</TextBlock>
+                <WrapPanel>
+                    <RadioButton Content="One Time" Margin="0,0,16,8" Command="{Binding RecurringChanged}" IsChecked="True" CommandParameter="{x:Static models:RecurrenceType.OneTime}"/>
+                    <RadioButton Content="Daily" Margin="0,0,16,8" Command="{Binding RecurringChanged}" CommandParameter="{x:Static models:RecurrenceType.Daily}"/>
+                    <RadioButton Content="Weekly" Margin="0,0,16,8" Command="{Binding RecurringChanged}" CommandParameter="{x:Static models:RecurrenceType.Weekly}"/>
+                    <RadioButton Content="Monthly" Margin="0,0,16,8" Command="{Binding RecurringChanged}" CommandParameter="{x:Static models:RecurrenceType.Monthly}"/>
+                    <RadioButton Content="Yearly" Margin="0,0,16,8" Command="{Binding ReccuringChanged}" CommandParameter="{x:Static models:RecurrenceType.Yearly}"/>
+                </WrapPanel>
             </StackPanel>
         </Border>
 
-        <Border Style="{StaticResource card-border}">
-            <StackPanel Style="{StaticResource card}" Orientation="Horizontal">
-                <TextBlock>Type:</TextBlock>
-                <RadioButton Content="Income" Margin="8 0 8 0" Command="{Binding TypeChanged}" IsChecked="True" CommandParameter="{x:Static models:TransactionType.Income}"/>
-                <RadioButton Content="Expense" Margin="8 0 8 0" Command="{Binding TypeChanged}" CommandParameter="{x:Static models:TransactionType.Expense}"/>
-                <RadioButton Content="Savings" Margin="8 0 8 0" Command="{Binding TypeChanged}" CommandParameter="{x:Static models:TransactionType.Saving}"/>
+        <Border Style="{StaticResource card-border}" MinWidth="500">
+            <StackPanel>
+                <TextBlock Margin="0,0,0,12" FontSize="14" Foreground="{StaticResource muted}">Transaction Type</TextBlock>
+                <WrapPanel>
+                    <RadioButton Content="Income" Margin="0,0,16,8" Command="{Binding TypeChanged}" IsChecked="True" CommandParameter="{x:Static models:TransactionType.Income}"/>
+                    <RadioButton Content="Expense" Margin="0,0,16,8" Command="{Binding TypeChanged}" CommandParameter="{x:Static models:TransactionType.Expense}"/>
+                    <RadioButton Content="Savings" Margin="0,0,16,8" Command="{Binding TypeChanged}" CommandParameter="{x:Static models:TransactionType.Saving}"/>
+                </WrapPanel>
             </StackPanel>
         </Border>
-        <Border Style="{StaticResource card-border}">
-            <Button Click="CreateReportClicked">
-                Create report
-            </Button>
-        </Border>
-<Border Style="{StaticResource card-border}">
-    <Button Click="BackClicked">
-       Back
-    </Button>
-</Border>
+        
+        <Grid MinWidth="500">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Style="{StaticResource card-border}" BorderThickness="0" Background="Transparent">
+                <Button Click="BackClicked" Background="{StaticResource layer}" Foreground="{StaticResource fg}">
+                    ← Back
+                </Button>
+            </Border>
+            <Border Grid.Column="1" Style="{StaticResource card-border}" BorderThickness="0" Background="Transparent">
+                <Button Click="CreateReportClicked">
+                    Create Transaction
+                </Button>
+            </Border>
+        </Grid>
     </StackPanel>
 
 </UserControl>

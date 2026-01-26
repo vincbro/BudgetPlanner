@@ -6,24 +6,31 @@
              xmlns:local="clr-namespace:BudgetPlanner.App.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Border Style="{StaticResource card-border}">
-            <StackPanel Style="{StaticResource card}" Orientation="Horizontal">
-                <TextBlock>First name: </TextBlock>
-                <TextBox MinWidth="150" Text="{Binding FirstName}"></TextBox>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="500">
+        <TextBlock TextAlignment="Center" Style="{StaticResource h1}" Margin="0,0,0,12">
+            Create New Account
+        </TextBlock>
+        <TextBlock TextAlignment="Center" Style="{StaticResource h2}" Margin="0,0,0,32" Foreground="{StaticResource muted}">
+            Enter your details to get started
+        </TextBlock>
+        
+        <Border Style="{StaticResource card-border}" MinWidth="400">
+            <StackPanel>
+                <TextBlock Margin="0,0,0,8" FontSize="14" Foreground="{StaticResource muted}">First Name</TextBlock>
+                <TextBox MinWidth="150" Text="{Binding FirstName}" />
             </StackPanel>
         </Border>
 
-        <Border Style="{StaticResource card-border}">
-            <StackPanel Style="{StaticResource card}" Orientation="Horizontal">
-                <TextBlock>Last name: </TextBlock>
-                <TextBox MinWidth="150" Text="{Binding LastName}"></TextBox>
+        <Border Style="{StaticResource card-border}" MinWidth="400">
+            <StackPanel>
+                <TextBlock Margin="0,0,0,8" FontSize="14" Foreground="{StaticResource muted}">Last Name</TextBlock>
+                <TextBox MinWidth="150" Text="{Binding LastName}" />
             </StackPanel>
         </Border>
 
-        <Border Style="{StaticResource card-border}">
-            <Button Click="CreateUserClicked">
-                Create new user
+        <Border Style="{StaticResource card-border}" BorderThickness="0" Background="Transparent" MinWidth="400">
+            <Button Click="CreateUserClicked" MinWidth="400">
+                Create Account
             </Button>
         </Border>
     </StackPanel>

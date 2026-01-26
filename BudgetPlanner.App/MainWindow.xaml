@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:BudgetPlanner.App"
         mc:Ignorable="d"
         Background="{StaticResource bg}" 
-        Title="MainWindow" Height="720" Width="1024" >
+        Title="Budget Planner" Height="800" Width="1280" 
+        WindowStartupLocation="CenterScreen"
+        MinHeight="600" MinWidth="900">
     <Grid>
         <ContentControl x:Name="ActiveScreen"/>
     </Grid>

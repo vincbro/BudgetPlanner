@@ -6,35 +6,42 @@
              xmlns:local="clr-namespace:BudgetPlanner.App.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock TextAlignment="Center" Style="{StaticResource h1}">
-            Welcome to Budget Planer
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="500">
+        <TextBlock TextAlignment="Center" Style="{StaticResource h1}" Margin="0,0,0,12">
+            Welcome to Budget Planner
         </TextBlock>
-        <TextBlock TextAlignment="Center" Style="{StaticResource h2}">
-            Who are you?
+        <TextBlock TextAlignment="Center" Style="{StaticResource h2}" Margin="0,0,0,32" Foreground="{StaticResource muted}">
+            Select your account to continue
         </TextBlock>
-        <Border Style="{StaticResource card-border}">
-            <ListView ItemsSource="{Binding Users}" SelectedItem="{Binding Path=SelectedUser}" Style="{StaticResource list}">
+        <Border Style="{StaticResource card-border}" MinWidth="400">
+            <ListView ItemsSource="{Binding Users}" SelectedItem="{Binding Path=SelectedUser}" Style="{StaticResource list}" BorderThickness="0" Background="Transparent">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding FirstName}"  Margin="0 8 0 8" Style="{StaticResource p}"/>
-                            <TextBlock  Text=" " Margin="0 8 0 8" Style="{StaticResource p}"/>
-                            <TextBlock Text="{Binding LastName}" Margin="0 8 0 8" Style="{StaticResource p}"/>
-                        </StackPanel>
+                        <Border Padding="12,8" Margin="0,4" Background="Transparent" CornerRadius="6">
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Width="32" Height="32" Fill="{StaticResource accent}" Margin="0,0,12,0"/>
+                                <StackPanel VerticalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding FirstName}" FontSize="16" FontWeight="Medium"/>
+                                        <TextBlock Text=" " FontSize="16" FontWeight="Medium"/>
+                                        <TextBlock Text="{Binding LastName}" FontSize="16" FontWeight="Medium"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </Border>
 
-        <Border Style="{StaticResource card-border}">
-            <Button Click="SelectUser" IsEnabled="{Binding IsUserSelected}">
-                Select user
+        <Border Style="{StaticResource card-border}" BorderThickness="0" Background="Transparent">
+            <Button Click="SelectUser" IsEnabled="{Binding IsUserSelected}" MinWidth="400">
+                Select Account
             </Button>
         </Border>
-        <Border Style="{StaticResource card-border}">
-            <Button Click="CreateUserClicked">
-                Create new user
+        <Border Style="{StaticResource card-border}" BorderThickness="0" Background="Transparent">
+            <Button Click="CreateUserClicked" MinWidth="400" Background="{StaticResource layer}" Foreground="{StaticResource accent}">
+                + Create New Account
             </Button>
         </Border>
     </StackPanel>
