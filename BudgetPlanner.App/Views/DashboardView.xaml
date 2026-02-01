@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="BudgetPlanner.App.Views.DashboardView"
+<UserControl x:Class="BudgetPlanner.App.Views.DashboardView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,176 +6,194 @@
         xmlns:local="clr-namespace:BudgetPlanner.App.Views" xmlns:models="clr-namespace:BudgetPlanner.App.Models"
              mc:Ignorable="d"
         d:Height="720" d:Width="1280">
-    <DockPanel LastChildFill="True" Margin="16">
-        <StackPanel Margin="0,0,0,16" Orientation="Horizontal" DockPanel.Dock="Top">
-            <TextBlock Style="{StaticResource h1}" VerticalAlignment="Center" Margin="0,0,16,0">Dashboard</TextBlock>
-            <Border Style="{StaticResource card-border}" BorderThickness="0" Background="Transparent" Padding="0">
-                <Button Click="ReportTransactionClicked" Padding="12,8">
-                    + Add Transaction
-                </Button>
-            </Border>
-            <Border Style="{StaticResource card-border}" BorderThickness="0" Background="Transparent" Padding="0">
-                <Button Command="{Binding RefreshCommand}" Background="{StaticResource layer}" Padding="12,8">
-                    ↻ Refresh
-                </Button>
-            </Border>
-        </StackPanel>
-        <Grid Margin="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            
-            <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource card-border}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource h2}" FontSize="14" Foreground="{StaticResource muted}" Margin="0,0,0,8">● Balance</TextBlock>
-                    <TextBlock Style="{StaticResource h2}" FontSize="24" FontWeight="SemiBold" Text="{Binding User.Account.Balance, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
-                </StackPanel>
-            </Border>
-            <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource card-border}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource h2}" FontSize="14" Foreground="{StaticResource muted}" Margin="0,0,0,8">● Savings</TextBlock>
-                    <TextBlock Style="{StaticResource h2}" FontSize="24" FontWeight="SemiBold" Text="{Binding User.Account.Savings, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
-                </StackPanel>
-            </Border>
-            <Border Grid.Row="0" Grid.Column="2" Style="{StaticResource card-border}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource h2}" FontSize="14" Foreground="{StaticResource muted}" Margin="0,0,0,8">▲ Total Income</TextBlock>
-                    <TextBlock Style="{StaticResource h2}" FontSize="24" FontWeight="SemiBold" Foreground="{StaticResource success}" Text="{Binding User.Account.TotalIncome, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
-                </StackPanel>
-            </Border>
-            <Border Grid.Row="0" Grid.Column="3" Style="{StaticResource card-border}">
-                <StackPanel>
+	<DockPanel LastChildFill="True" Margin="16">
+		<StackPanel Margin="0,0,0,16" Orientation="Horizontal" DockPanel.Dock="Top">
+			<TextBlock Style="{StaticResource h1}" VerticalAlignment="Center" Margin="0,0,16,0">Dashboard</TextBlock>
+			<Border Style="{StaticResource card-border}" BorderThickness="0" Background="Transparent" Padding="0">
+				<Button Click="ReportTransactionClicked" Padding="12,8">
+					+ Add Transaction
+				</Button>
+			</Border>
+			<Border Style="{StaticResource card-border}" BorderThickness="0" Background="Transparent" Padding="0">
+				<Button Command="{Binding RefreshCommand}" Background="{StaticResource layer}" Padding="12,8">
+					↻ Refresh
+				</Button>
+			</Border>
+		</StackPanel>
+		<Grid Margin="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition></RowDefinition>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition></ColumnDefinition>
+				<ColumnDefinition></ColumnDefinition>
+				<ColumnDefinition></ColumnDefinition>
+				<ColumnDefinition></ColumnDefinition>
+			</Grid.ColumnDefinitions>
+
+			<Border Grid.Row="0" Grid.Column="0" Style="{StaticResource card-border}">
+				<StackPanel>
+					<TextBlock Style="{StaticResource h2}" FontSize="14" Foreground="{StaticResource muted}" Margin="0,0,0,8">● Balance</TextBlock>
+					<TextBlock Style="{StaticResource h2}" FontSize="24" FontWeight="SemiBold" Text="{Binding User.Account.Balance, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
+				</StackPanel>
+			</Border>
+			<Border Grid.Row="0" Grid.Column="1" Style="{StaticResource card-border}">
+				<StackPanel>
+					<TextBlock Style="{StaticResource h2}" FontSize="14" Foreground="{StaticResource muted}" Margin="0,0,0,8">● Savings</TextBlock>
+					<TextBlock Style="{StaticResource h2}" FontSize="24" FontWeight="SemiBold" Text="{Binding User.Account.Savings, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
+				</StackPanel>
+			</Border>
+			<Border Grid.Row="0" Grid.Column="2" Style="{StaticResource card-border}">
+				<StackPanel>
+					<TextBlock Style="{StaticResource h2}" FontSize="14" Foreground="{StaticResource muted}" Margin="0,0,0,8">▲ Total Income</TextBlock>
+					<TextBlock Style="{StaticResource h2}" FontSize="24" FontWeight="SemiBold" Foreground="{StaticResource success}" Text="{Binding User.Account.TotalIncome, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
+				</StackPanel>
+			</Border>
+			<Border Grid.Row="0" Grid.Column="3" Style="{StaticResource card-border}">
+				<StackPanel>
                     <TextBlock Style="{StaticResource h2}" FontSize="14" Foreground="{StaticResource muted}" Margin="0,0,0,8">▼ Total Expenses</TextBlock>
-                    <TextBlock Style="{StaticResource h2}" FontSize="24" FontWeight="SemiBold" Foreground="{StaticResource danger}" Text="{Binding User.Account.TotalExpenses, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
-                </StackPanel>
-            </Border>
+					<TextBlock Style="{StaticResource h2}" FontSize="24" FontWeight="SemiBold" Foreground="{StaticResource danger}" Text="{Binding User.Account.TotalExpenses, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
+				</StackPanel>
+			</Border>
 
-            <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource card-border}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource h2}" FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Month Income</TextBlock>
-                    <TextBlock Style="{StaticResource h2}" FontSize="18" Foreground="{StaticResource success}" Text="{Binding User.Account.MonthIncome, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
-                </StackPanel>
-            </Border>
-            <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource card-border}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource h2}" FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Month Expenses</TextBlock>
-                    <TextBlock Style="{StaticResource h2}" FontSize="18" Foreground="{StaticResource danger}" Text="{Binding User.Account.MonthExpenses, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
-                </StackPanel>
-            </Border>
-            <Border Grid.Row="1" Grid.Column="2" Style="{StaticResource card-border}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource h2}" FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Year Income</TextBlock>
-                    <TextBlock Style="{StaticResource h2}" FontSize="18" Foreground="{StaticResource success}" Text="{Binding User.Account.YearIncome, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
-                </StackPanel>
-            </Border>
-            <Border Grid.Row="1" Grid.Column="3" Style="{StaticResource card-border}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource h2}" FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Year Expenses</TextBlock>
-                    <TextBlock Style="{StaticResource h2}" FontSize="18" Foreground="{StaticResource danger}" Text="{Binding User.Account.YearExpenses, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
-                </StackPanel>
-            </Border>
+			<Border Grid.Row="1" Grid.Column="0" Style="{StaticResource card-border}">
+				<StackPanel>
+					<TextBlock Style="{StaticResource h2}" FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Month Income</TextBlock>
+					<TextBlock Style="{StaticResource h2}" FontSize="18" Foreground="{StaticResource success}" Text="{Binding User.Account.MonthIncome, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
+				</StackPanel>
+			</Border>
+			<Border Grid.Row="1" Grid.Column="1" Style="{StaticResource card-border}">
+				<StackPanel>
+					<TextBlock Style="{StaticResource h2}" FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Month Expenses</TextBlock>
+					<TextBlock Style="{StaticResource h2}" FontSize="18" Foreground="{StaticResource danger}" Text="{Binding User.Account.MonthExpenses, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
+				</StackPanel>
+			</Border>
+			<Border Grid.Row="1" Grid.Column="2" Style="{StaticResource card-border}">
+				<StackPanel>
+					<TextBlock Style="{StaticResource h2}" FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Year Income</TextBlock>
+					<TextBlock Style="{StaticResource h2}" FontSize="18" Foreground="{StaticResource success}" Text="{Binding User.Account.YearIncome, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
+				</StackPanel>
+			</Border>
+			<Border Grid.Row="1" Grid.Column="3" Style="{StaticResource card-border}">
+				<StackPanel>
+					<TextBlock Style="{StaticResource h2}" FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Year Expenses</TextBlock>
+					<TextBlock Style="{StaticResource h2}" FontSize="18" Foreground="{StaticResource danger}" Text="{Binding User.Account.YearExpenses, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
+				</StackPanel>
+			</Border>
 
-            <Border Grid.Row="2" Grid.Column="0" Style="{StaticResource card-border}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource h2}" FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Frånvaro Avdrag</TextBlock>
-                    <TextBlock Style="{StaticResource h2}" FontSize="18" Foreground="{StaticResource danger}" Text="{Binding User.Account.AbsenceDeduction, StringFormat='-{0:N0} kr', Mode=OneWay}"/>
-                </StackPanel>
-            </Border>
-            <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource card-border}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource h2}" FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Frånvaro Ersättning</TextBlock>
-                    <TextBlock Style="{StaticResource h2}" FontSize="18" Foreground="{StaticResource success}" Text="{Binding User.Account.AbsenceCompensation, StringFormat='+{0:N0} kr', Mode=OneWay}"/>
-                </StackPanel>
-            </Border>
-            <Border Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource card-border}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource h2}" FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Frånvaro Total Effekt (Nästa månad)</TextBlock>
-                    <TextBlock Style="{StaticResource h2}" FontSize="18" FontWeight="SemiBold" Text="{Binding User.Account.AbsenceEffect, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
-                </StackPanel>
-            </Border>
+			<Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource card-border}">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
 
-            <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource card-border}">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+					<TextBlock Grid.Row="0" Style="{StaticResource h2}" Margin="0,0,0,12">Recent Transactions</TextBlock>
 
-                    <TextBlock Grid.Row="0" Style="{StaticResource h2}" Margin="0,0,0,12">Recent Transactions</TextBlock>
+					<Grid Grid.Row="1" Margin="0,0,0,8">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
 
-                    <ListView Grid.Row="1" 
-                              ItemsSource="{Binding Transactions}" 
-                              SelectedItem="{Binding Path=SelectedTransaction}" 
+						<TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="12" Foreground="{StaticResource muted}">Sort:</TextBlock>
+						<ComboBox Grid.Column="1" SelectedItem="{Binding CurrentSortBy}" ItemsSource="{Binding SortOptions}" MinWidth="100" Margin="0,0,8,0"/>
+
+						<ComboBox Grid.Column="2" SelectedIndex="{Binding SortAscending, Converter={StaticResource BoolToIndexConverter}}" MinWidth="100" Margin="0,0,16,0">
+							<ComboBoxItem Content="Descending"/>
+							<ComboBoxItem Content="Ascending"/>
+						</ComboBox>
+
+						<TextBlock Grid.Column="3" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="12" Foreground="{StaticResource muted}">Type:</TextBlock>
+						<ComboBox Grid.Column="4" SelectedItem="{Binding FilterType}" ItemsSource="{Binding TypeFilterOptions}" MinWidth="100" Margin="0,0,16,0"/>
+
+						<TextBlock Grid.Column="5" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="12" Foreground="{StaticResource muted}">Status:</TextBlock>
+						<ComboBox Grid.Column="6" SelectedItem="{Binding FilterProcessed}" ItemsSource="{Binding ProcessedFilterOptions}" MinWidth="120"/>
+					</Grid>
+
+					<Grid Grid.Row="2" Margin="0,0,0,12">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+
+						<TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="12" Foreground="{StaticResource muted}">Search Category:</TextBlock>
+						<TextBox Grid.Column="1" Text="{Binding CategorySearch, UpdateSourceTrigger=PropertyChanged}" MaxWidth="300" HorizontalAlignment="Left"/>
+					</Grid>
+
+					<ListView Grid.Row="3"
+                              ItemsSource="{Binding Transactions}"
+                              SelectedItem="{Binding Path=SelectedTransaction}"
                               Style="{StaticResource list}"
                               Background="Transparent"
                               BorderThickness="0"
                               ScrollViewer.VerticalScrollBarVisibility="Auto"
                               ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Border Padding="12,10" Margin="0,2" Background="#26233a" CornerRadius="6">
-                                    <TextBlock Text="{Binding Display}" FontSize="14" VerticalAlignment="Center"/>
-                                </Border>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </Grid>
-            </Border>
-            <Border Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource card-border}">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <StackPanel>
-                        <TextBlock Style="{StaticResource h2}" Margin="0,0,0,16">Edit Transaction</TextBlock>
-                        
-                        <TextBlock FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,6">Category</TextBlock>
-                        <TextBox Text="{Binding SelectedTransaction.Category}" Margin="0,0,0,12"/>
-                        
-                        <TextBlock FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,6">Amount (kr)</TextBlock>
-                        <TextBox Text="{Binding SelectedTransaction.Amount}" Margin="0,0,0,12"/>
-                        
-                        <TextBlock FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,6">Transaction Date</TextBlock>
-                        <TextBox Text="{Binding SelectedTransaction.TransactionDate}" Margin="0,0,0,16"/>
+						<ListView.ItemTemplate>
+							<DataTemplate>
+								<Border Padding="12,10" Margin="0,2" Background="#26233a" CornerRadius="6">
+									<TextBlock Text="{Binding Display}" FontSize="14" VerticalAlignment="Center"/>
+								</Border>
+							</DataTemplate>
+						</ListView.ItemTemplate>
+					</ListView>
+				</Grid>
+			</Border>
+			<Border Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource card-border}">
+				<ScrollViewer VerticalScrollBarVisibility="Auto">
+					<StackPanel>
+						<TextBlock Style="{StaticResource h2}" Margin="0,0,0,16">Edit Transaction</TextBlock>
 
-                        <TextBlock FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Recurrence Pattern</TextBlock>
-                        <WrapPanel Margin="0,0,0,16">
-                            <RadioButton Content="One Time" Margin="0,0,12,8" IsChecked="{Binding IsOneTimeSelected}" />
-                            <RadioButton Content="Daily" Margin="0,0,12,8" IsChecked="{Binding IsDailySelected}" />
-                            <RadioButton Content="Weekly" Margin="0,0,12,8" IsChecked="{Binding IsWeeklySelected}"/>
-                            <RadioButton Content="Monthly" Margin="0,0,12,8" IsChecked="{Binding IsMonthlySelected}"/>
-                            <RadioButton Content="Yearly" Margin="0,0,12,8" IsChecked="{Binding IsYearlySelected}"/>
-                        </WrapPanel>
+						<TextBlock FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,6">Category</TextBlock>
+						<TextBox Text="{Binding SelectedTransaction.Category}" Margin="0,0,0,12"/>
 
-                        <TextBlock FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Transaction Type</TextBlock>
-                        <WrapPanel Margin="0,0,0,16">
-                            <RadioButton Content="Income" Margin="0,0,12,8" IsChecked="{Binding IsIncomeSelected}" />
-                            <RadioButton Content="Expense" Margin="0,0,12,8" IsChecked="{Binding IsExpenseSelected}" />
-                            <RadioButton Content="Savings" Margin="0,0,12,8" IsChecked="{Binding IsSavingSelected}"/>
-                        </WrapPanel>
+						<TextBlock FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,6">Amount (kr)</TextBlock>
+						<TextBox Text="{Binding SelectedTransaction.Amount}" Margin="0,0,0,12"/>
 
-                        <TextBlock FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,6">Payout Percentage (0-1)</TextBlock>
-                        <TextBox Text="{Binding SelectedTransaction.PayoutPercentage}" Margin="0,0,0,4"/>
-                        <TextBlock FontSize="11" Foreground="{StaticResource muted}" Margin="0,0,0,20">1.0 = Full payout, 0.8 = 80% (VAB/Sick), 0 = No payout</TextBlock>
+						<TextBlock FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,6">Transaction Date</TextBlock>
+						<TextBox Text="{Binding SelectedTransaction.TransactionDate}" Margin="0,0,0,16"/>
 
-                        <Button Command="{Binding SaveCommand}" Margin="0,0,0,8">
-                            ✓ Save Changes
-                        </Button>
-                        <Button Command="{Binding DeleteCommand}" Style="{StaticResource DangerButton}" Margin="0,0,0,8">
-                            ✕ Delete Transaction
-                        </Button>
-                        <Button Command="{Binding DeleteAllCommand}" Style="{StaticResource DangerButton}">
-                            ✕ Delete All Linked Transactions
-                        </Button>
-                    </StackPanel>
-                </ScrollViewer>
-            </Border>
-        </Grid>
-    </DockPanel>
+						<TextBlock FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Recurrence Pattern</TextBlock>
+						<WrapPanel Margin="0,0,0,16">
+							<RadioButton Content="One Time" Margin="0,0,12,8" IsChecked="{Binding IsOneTimeSelected}" />
+							<RadioButton Content="Daily" Margin="0,0,12,8" IsChecked="{Binding IsDailySelected}" />
+							<RadioButton Content="Weekly" Margin="0,0,12,8" IsChecked="{Binding IsWeeklySelected}"/>
+							<RadioButton Content="Monthly" Margin="0,0,12,8" IsChecked="{Binding IsMonthlySelected}"/>
+							<RadioButton Content="Yearly" Margin="0,0,12,8" IsChecked="{Binding IsYearlySelected}"/>
+						</WrapPanel>
+
+						<TextBlock FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Transaction Type</TextBlock>
+						<WrapPanel Margin="0,0,0,16">
+							<RadioButton Content="Income" Margin="0,0,12,8" IsChecked="{Binding IsIncomeSelected}" />
+							<RadioButton Content="Expense" Margin="0,0,12,8" IsChecked="{Binding IsExpenseSelected}" />
+							<RadioButton Content="Savings" Margin="0,0,12,8" IsChecked="{Binding IsSavingSelected}"/>
+						</WrapPanel>
+
+						<TextBlock FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,6">Payout Percentage (0-1)</TextBlock>
+						<TextBox Text="{Binding SelectedTransaction.PayoutPercentage}" Margin="0,0,0,4"/>
+						<TextBlock FontSize="11" Foreground="{StaticResource muted}" Margin="0,0,0,20">1.0 = Full payout, 0.8 = 80% (VAB/Sick), 0 = No payout</TextBlock>
+
+						<Button Command="{Binding SaveCommand}" Margin="0,0,0,8">
+							✓ Save Changes
+						</Button>
+						<Button Command="{Binding DeleteCommand}" Style="{StaticResource DangerButton}" Margin="0,0,0,8">
+							✕ Delete Transaction
+						</Button>
+						<Button Command="{Binding DeleteAllCommand}" Style="{StaticResource DangerButton}">
+							✕ Delete All Linked Transactions
+						</Button>
+					</StackPanel>
+				</ScrollViewer>
+			</Border>
+		</Grid>
+	</DockPanel>
 </UserControl>

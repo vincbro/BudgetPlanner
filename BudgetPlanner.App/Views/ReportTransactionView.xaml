@@ -75,7 +75,10 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" Style="{StaticResource card-border}" BorderThickness="0" Background="Transparent">
                 <Button Click="BackClicked" Background="{StaticResource layer}" Foreground="{StaticResource fg}">
-                    ← Back
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72B;" Margin="0,0,6,0"/>
+                        <TextBlock Text="Back"/>
+                    </StackPanel>
                 </Button>
             </Border>
             <Border Grid.Column="1" Style="{StaticResource card-border}" BorderThickness="0" Background="Transparent">
