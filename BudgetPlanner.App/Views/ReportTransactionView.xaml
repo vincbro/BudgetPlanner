@@ -59,6 +59,14 @@
                 </WrapPanel>
             </StackPanel>
         </Border>
+
+        <Border Style="{StaticResource card-border}" MinWidth="500">
+            <StackPanel>
+                <TextBlock Margin="0,0,0,8" FontSize="14" Foreground="{StaticResource muted}">Payout Percentage (0-1)</TextBlock>
+                <TextBox MinWidth="150" Text="{Binding PayoutPercentage}"/>
+                <TextBlock Margin="0,4,0,0" FontSize="12" Foreground="{StaticResource muted}">1.0 = Full payout, 0.8 = 80% (VAB/Sick), 0 = No payout</TextBlock>
+            </StackPanel>
+        </Border>
         
         <Grid MinWidth="500">
             <Grid.ColumnDefinitions>

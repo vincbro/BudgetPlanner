@@ -1,4 +1,4 @@
-﻿using BudgetPlanner.App.Data;
+using BudgetPlanner.App.Data;
 using System.ComponentModel.DataAnnotations;
 
 namespace BudgetPlanner.App.Models
@@ -13,7 +13,7 @@ namespace BudgetPlanner.App.Models
 		{
 			if(t.IsProcessed && t.Type == TransactionType.Income)
 			{
-				return t.Amount;
+				return t.EffectiveAmount;
 			}
 			return 0;
 		}
@@ -32,7 +32,7 @@ namespace BudgetPlanner.App.Models
 		{
 			if(t.Type == TransactionType.Income && DateTime.Now.Month == t.TransactionDate.Month)
 			{
-				return t.Amount;
+				return t.EffectiveAmount;
 			}
 			return 0;
 		}
@@ -41,7 +41,7 @@ namespace BudgetPlanner.App.Models
 		{
 			if(t.Type == TransactionType.Expense && DateTime.Now.Month == t.TransactionDate.Month)
 			{
-				return t.Amount;
+				return t.EffectiveAmount;
 			}
 			return 0;
 		}
@@ -55,17 +55,17 @@ namespace BudgetPlanner.App.Models
 				switch(t.Recurrence)
 				{
 					case RecurrenceType.Daily:
-						return t.Amount * 365;
+						return t.EffectiveAmount * 365;
 					case RecurrenceType.Weekly:
-						return t.Amount * 52;
+						return t.EffectiveAmount * 52;
 					case RecurrenceType.Monthly:
-						return t.Amount * 12;
+						return t.EffectiveAmount * 12;
 					case RecurrenceType.Yearly:
-						return t.Amount;
+						return t.EffectiveAmount;
 					default:
 						if(t.TransactionDate.Year == DateTime.Now.Year)
 						{
-							return t.Amount;
+							return t.EffectiveAmount;
 						}
 						return 0;
 				}
@@ -80,17 +80,17 @@ namespace BudgetPlanner.App.Models
 				switch(t.Recurrence)
 				{
 					case RecurrenceType.Daily:
-						return t.Amount * 365;
+						return t.EffectiveAmount * 365;
 					case RecurrenceType.Weekly:
-						return t.Amount * 52;
+						return t.EffectiveAmount * 52;
 					case RecurrenceType.Monthly:
-						return t.Amount * 12;
+						return t.EffectiveAmount * 12;
 					case RecurrenceType.Yearly:
-						return t.Amount;
+						return t.EffectiveAmount;
 					default:
 						if(t.TransactionDate.Year == DateTime.Now.Year)
 						{
-							return t.Amount;
+							return t.EffectiveAmount;
 						}
 						return 0;
 				}
@@ -102,7 +102,7 @@ namespace BudgetPlanner.App.Models
 		{
 			if(t.IsProcessed && t.Type == TransactionType.Saving)
 			{
-				return t.Amount;
+				return t.EffectiveAmount;
 			}
 			return 0;
 		}
@@ -137,6 +137,7 @@ namespace BudgetPlanner.App.Models
 						AccountId = transaction.AccountId,
 						TransactionDate = AddTime(transaction.TransactionDate, transaction.Recurrence),
 						BaseTransactionId = transaction.BaseTransactionId ?? transaction.Id,
+						PayoutPercentage = transaction.PayoutPercentage,
 					};
 
 					data.AddTransaction(newTransaction);

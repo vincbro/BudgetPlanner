@@ -34,8 +34,10 @@ namespace BudgetPlanner.App.Models
 		public RecurrenceType Recurrence { get; set; }
 		public string? BaseTransactionId { get; set; } = null;
 		public string AccountId { get; set; } = string.Empty;
+		public decimal PayoutPercentage { get; set; } = 1.0M;
 
-		public string Display => $"{TransactionDate.ToShortDateString()} - {Type} - {Category}: {string.Format("{0:N0}", Amount)} kr - Processed: [{IsProcessed}]";
+		public decimal EffectiveAmount => Amount * PayoutPercentage;
+		public string Display => $"{TransactionDate.ToShortDateString()} - {Type} - {Category}: {string.Format("{0:N0}", Amount)} kr ({PayoutPercentage:P0}) - Processed: [{IsProcessed}]";
 
 		public event PropertyChangedEventHandler? PropertyChanged;
 		protected void OnPropertyChanged([CallerMemberName] string? name = null) =>

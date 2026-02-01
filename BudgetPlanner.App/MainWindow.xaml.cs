@@ -23,6 +23,7 @@ public partial class MainWindow : Window
 
 	private Views.DashboardView NewDashbordView(string id)
 	{
-		return new Views.DashboardView(id, () => ActiveScreen.Content = new Views.ReportTransactionView(id, () => ActiveScreen.Content = NewDashbordView(id)));
+		return new Views.DashboardView(id, 
+			() => ActiveScreen.Content = new Views.ReportTransactionView(id, () => ActiveScreen.Content = NewDashbordView(id)));
 	}
 }

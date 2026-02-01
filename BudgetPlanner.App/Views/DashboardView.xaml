@@ -24,6 +24,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -82,7 +83,27 @@
                     <TextBlock Style="{StaticResource h2}" FontSize="18" Foreground="{StaticResource danger}" Text="{Binding User.Account.YearExpenses, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
                 </StackPanel>
             </Border>
-            <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource card-border}">
+
+            <Border Grid.Row="2" Grid.Column="0" Style="{StaticResource card-border}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource h2}" FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Frånvaro Avdrag</TextBlock>
+                    <TextBlock Style="{StaticResource h2}" FontSize="18" Foreground="{StaticResource danger}" Text="{Binding User.Account.AbsenceDeduction, StringFormat='-{0:N0} kr', Mode=OneWay}"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource card-border}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource h2}" FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Frånvaro Ersättning</TextBlock>
+                    <TextBlock Style="{StaticResource h2}" FontSize="18" Foreground="{StaticResource success}" Text="{Binding User.Account.AbsenceCompensation, StringFormat='+{0:N0} kr', Mode=OneWay}"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource card-border}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource h2}" FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Frånvaro Total Effekt (Nästa månad)</TextBlock>
+                    <TextBlock Style="{StaticResource h2}" FontSize="18" FontWeight="SemiBold" Text="{Binding User.Account.AbsenceEffect, StringFormat='{}{0:N0} kr', Mode=OneWay}"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource card-border}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -133,11 +154,15 @@
                         </WrapPanel>
 
                         <TextBlock FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,8">Transaction Type</TextBlock>
-                        <WrapPanel Margin="0,0,0,20">
+                        <WrapPanel Margin="0,0,0,16">
                             <RadioButton Content="Income" Margin="0,0,12,8" IsChecked="{Binding IsIncomeSelected}" />
                             <RadioButton Content="Expense" Margin="0,0,12,8" IsChecked="{Binding IsExpenseSelected}" />
                             <RadioButton Content="Savings" Margin="0,0,12,8" IsChecked="{Binding IsSavingSelected}"/>
                         </WrapPanel>
+
+                        <TextBlock FontSize="12" Foreground="{StaticResource muted}" Margin="0,0,0,6">Payout Percentage (0-1)</TextBlock>
+                        <TextBox Text="{Binding SelectedTransaction.PayoutPercentage}" Margin="0,0,0,4"/>
+                        <TextBlock FontSize="11" Foreground="{StaticResource muted}" Margin="0,0,0,20">1.0 = Full payout, 0.8 = 80% (VAB/Sick), 0 = No payout</TextBlock>
 
                         <Button Command="{Binding SaveCommand}" Margin="0,0,0,8">
                             ✓ Save Changes

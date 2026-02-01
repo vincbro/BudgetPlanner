@@ -207,6 +207,7 @@ namespace BudgetPlanner.App.VM
 					transaction.Category = SelectedTransaction.Category;
 					transaction.TransactionDate = SelectedTransaction.TransactionDate;
 					transaction.Recurrence = SelectedTransaction.Recurrence;
+					transaction.PayoutPercentage = SelectedTransaction.PayoutPercentage;
 					data.UpdateTransaction(transaction);
 					SelectedTransaction = null;
 					RefreshCommand.Execute(null);

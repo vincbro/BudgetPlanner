@@ -22,15 +22,16 @@ namespace BudgetPlanner.App.Views {
 			Trace.WriteLine($"Report transaction of {vm.Amount} kr as {vm.Type}. Reccuring [{vm.RecurrenceType}], Time [{vm.TransactionDate}]");
 			var data = new DataService();
 			var user = data.GetUser(userId);
-			var transaction = new Transaction() {
-				Id = System.Guid.NewGuid().ToString(),
-				Amount = vm.Amount,
-				Category = vm.Category,
-				TransactionDate = vm.TransactionDate,
-				Recurrence = vm.RecurrenceType,
-				Type = vm.Type,
-				AccountId = user.Account.Id,
-			};
+		var transaction = new Transaction() {
+			Id = System.Guid.NewGuid().ToString(),
+			Amount = vm.Amount,
+			Category = vm.Category,
+			TransactionDate = vm.TransactionDate,
+			Recurrence = vm.RecurrenceType,
+			Type = vm.Type,
+			AccountId = user.Account.Id,
+			PayoutPercentage = vm.PayoutPercentage,
+		};
 			data.AddTransaction(transaction);
 			createReport.Invoke();
 		}
