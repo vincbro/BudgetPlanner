@@ -5,46 +5,47 @@
 ## Features
 
 - **User Management**: Support for multiple users, allowing different individuals to maintain separate financial records.
+
 - **Dashboard Overview**: Real-time summary of your financial health, including:
-- Total Balance and Savings.
-- Total Income vs. Total Expenses.
-- Monthly and Yearly breakdowns.
+	- Total Balance and Savings.
+	- Total Income vs. Total Expenses.
+	- Monthly and Yearly breakdowns.
 
 
 - **Transaction Management**:
-- **Add Transactions**: Record Income, Expenses, or Savings.
-- **Recurring Transactions**: Set transactions to repeat Daily, Weekly, Monthly, or Yearly. The system automatically processes these when due.
-- **Edit/Delete**: Modify or remove existing transactions directly from the dashboard.
-- **Payout Percentage**: Unique feature to adjust income based on payout rates (e.g., set to 0.8 for 80% income during sick leave/VAB).
+	- **Add Transactions**: Record Income, Expenses, or Savings.
+	- **Recurring Transactions**: Set transactions to repeat Daily, Weekly, Monthly, or Yearly. The system automatically processes these when due.
+	- **Edit/Delete**: Modify or remove existing transactions directly from the dashboard.
+	- **Payout Percentage**: Unique feature to adjust income based on payout rates (e.g., set to 0.8 for 80% income during sick leave/VAB).
 
 
 - **Advanced Filtering & Sorting**:
-- Sort transactions by Date, Category, Type, Amount, or Processed status.
-- Filter by Type (Income/Expense/Saving) or Processed status.
-- Search transactions by Category.
+	- Sort transactions by Date, Category, Type, Amount, or Processed status.
+	- Filter by Type (Income/Expense/Saving) or Processed status.
+	- Search transactions by Category.
 
 
 - **Data Persistence**: Automatically creates and uses a local SQLite database (`main.db`) to store all data.
 
 ## Techstack
 
-* **Framework**: .NET 9.0
-* **UI Framework**: WPF (Windows Presentation Foundation)
-* **Architecture**: MVVM (Model-View-ViewModel)
-* **Database**: SQLite via Entity Framework Core
-* **ORM**: Microsoft.EntityFrameworkCore (v9.0.11) with Proxies
+- **Framework**: .NET 9.0
+- **UI Framework**: WPF (Windows Presentation Foundation)
+- **Architecture**: MVVM (Model-View-ViewModel)
+- **Database**: SQLite via Entity Framework Core
+- **ORM**: Microsoft.EntityFrameworkCore (v9.0.11) with Proxies
 
 ## Project Structure
 
 The project follows a standard MVVM structure:
 
-* **BudgetPlanner.App**
-* `Commands/`: Custom implementations of `ICommand` (e.g., `DelegateCommand`).
-* `Converters/`: UI Value Converters (e.g., `BoolToIndexConverter`).
-* `Data/`: Database context (`AppContext`) and data access services (`DataService`).
-* `Models/`: Entity definitions (`User`, `Account`, `Transaction`).
-* `VM/`: ViewModels handling logic for the views (`DashboardViewModel`, `ReportTransactionViewModel`, etc.).
-* `Views/`: XAML UserControls for the UI (`DashboardView`, `CreateUserView`, etc.).
+- **BudgetPlanner.App**
+	- `Commands/`: Custom implementations of `ICommand` (e.g., `DelegateCommand`).
+	- `Converters/`: UI Value Converters (e.g., `BoolToIndexConverter`).
+	- `Data/`: Database context (`AppContext`) and data access services (`DataService`).
+	- `Models/`: Entity definitions (`User`, `Account`, `Transaction`).
+	- `VM/`: ViewModels handling logic for the views (`DashboardViewModel`, `ReportTransactionViewModel`, etc.).
+	- `Views/`: XAML UserControls for the UI (`DashboardView`, `CreateUserView`, etc.).
 
 ## Getting Started
 
